@@ -1,4 +1,4 @@
-# Auto No Auto Retry
+# Auto No Auto-Retry
 A mod that turns off auto-retry after a set percentage.
 
 # Features
