@@ -40,7 +40,9 @@ class $modify(ANARPauseLayer, PauseLayer) {
         auto anarButtonSprite = CircleButtonSprite::createWithSprite("ANAR_anarBtn_001.png"_spr, 1.0f, CircleBaseColor::Green, CircleBaseSize::MediumAlt);
         anarButtonSprite->getTopNode()->setScale(1.0f);
         anarButtonSprite->setScale(0.6f);
-        rightButtonMenu->addChild(CCMenuItemExt::createSpriteExtra(anarButtonSprite, [](auto) { ANARSettingsPopup::create()->show(); }));
+        auto anarButton = CCMenuItemExt::createSpriteExtra(anarButtonSprite, [](auto) { ANARSettingsPopup::create()->show(); });
+        anarButton->setID("settings-button"_spr);
+        rightButtonMenu->addChild(anarButton);
         rightButtonMenu->updateLayout();
     }
 };
