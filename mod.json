@@ -1,16 +1,15 @@
 {
-    "geode": "3.1.1",
+    "geode": "4.0.0-alpha.1",
     "gd": {
-        "android": "2.206",
-        "win": "2.206",
-        "mac": "2.206"
+        "android": "2.2074",
+        "win": "2.2074",
+        "mac": "2.2074"
     },
-    "version": "v1.0.1",
+    "version": "v1.0.2-beta.1",
     "id": "hiimjustin000.auto_no_auto_retry",
     "name": "Auto No Auto-Retry",
     "developer": "hiimjustin000",
     "description": "A mod that turns off auto-retry after a set percentage.",
-    "repository": "https://github.com/hiimjustin000/AutoNoAutoRetry",
     "settings": {
         "enable": {
             "name": "Enable",
@@ -39,6 +38,11 @@
             "importance": "required"
         }
     ],
+    "links": {
+        "community": "https://discord.gg/QVKmbvBXA7",
+        "source": "https://github.com/hiimjustin000/AutoNoAutoRetry",
+        "homepage": "https://www.hiimjustin000.com"
+    },
     "tags": [
         "customization",
         "enhancement",

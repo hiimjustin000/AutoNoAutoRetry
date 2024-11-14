@@ -1,5 +1,7 @@
 #include "ANARSettingsPopup.hpp"
 
+using namespace geode::prelude;
+
 ANARSettingsPopup* ANARSettingsPopup::create() {
     auto ret = new ANARSettingsPopup();
     if (ret->initAnchored(220.0f, 150.0f)) {
@@ -18,11 +20,11 @@ bool ANARSettingsPopup::setup() {
 
     m_percentageInput = TextInput::create(50.0f, "Num");
     m_percentageInput->setCommonFilter(CommonFilter::Uint);
-    m_percentageInput->setPosition(76.25f, 90.0f);
+    m_percentageInput->setPosition({ 76.25f, 90.0f });
     m_percentageInput->getInputNode()->setLabelPlaceholderColor({ 120, 170, 240 });
     m_percentageInput->setString(std::to_string(m_value));
     m_percentageInput->setCallback([this](std::string const& text) {
-        auto value = text.empty() ? 0 : std::stoi(text);
+        auto value = text.empty() ? 0 : numFromString<int>(text).unwrapOr(0);
         m_value = std::clamp(value, 0, 100);
         valueChanged(value != m_value);
     });
@@ -34,7 +36,7 @@ bool ANARSettingsPopup::setup() {
         m_value = std::max(0, m_value - 1);
         valueChanged(true);
     });
-    m_leftButton->setPosition(60.0f, 90.0f);
+    m_leftButton->setPosition({ 60.0f, 90.0f });
     m_leftButton->setEnabled(m_enabled);
     m_buttonMenu->addChild(m_leftButton);
 
@@ -42,19 +44,19 @@ bool ANARSettingsPopup::setup() {
         m_value = std::min(100, m_value + 1);
         valueChanged(true);
     });
-    m_rightButton->setPosition(160.0f, 90.0f);
+    m_rightButton->setPosition({ 160.0f, 90.0f });
     m_rightButton->setEnabled(m_enabled);
     m_buttonMenu->addChild(m_rightButton);
 
     m_slider = Slider::create(this, menu_selector(ANARSettingsPopup::onSlider), 0.9f);
-    m_slider->setPosition(110.0f, 55.0f);
+    m_slider->setPosition({ 110.0f, 55.0f });
     m_slider->setValue(m_value / 100.0f);
     m_slider->m_touchLogic->setEnabled(m_enabled);
     m_mainLayer->addChild(m_slider);
 
     auto percentLabel = CCLabelBMFont::create("%", "bigFont.fnt");
     percentLabel->setScale(0.6f);
-    percentLabel->setPosition(146.25f, 90.0f);
+    percentLabel->setPosition({ 146.25f, 90.0f });
     percentLabel->setAnchorPoint({ 1.0f, 0.5f });
     m_mainLayer->addChild(percentLabel);
 
@@ -65,7 +67,7 @@ bool ANARSettingsPopup::setup() {
         m_slider->m_touchLogic->setEnabled(m_enabled);
         m_percentageInput->setEnabled(m_enabled);
     });
-    enabledToggler->setPosition(24.0f, 24.0f);
+    enabledToggler->setPosition({ 24.0f, 24.0f });
     enabledToggler->toggle(m_enabled);
     m_buttonMenu->addChild(enabledToggler);
 
@@ -74,7 +76,7 @@ bool ANARSettingsPopup::setup() {
         Mod::get()->setSettingValue("percentage", (int64_t)m_value);
         onClose(nullptr);
     });
-    setButton->setPosition(110.0f, 24.0f);
+    setButton->setPosition({ 110.0f, 24.0f });
     m_buttonMenu->addChild(setButton);
 
     return true;

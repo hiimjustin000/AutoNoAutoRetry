@@ -1,12 +1,8 @@
-#include <Geode/Geode.hpp>
-
-using namespace geode::prelude;
-
-class ANARSettingsPopup : public Popup<> {
+class ANARSettingsPopup : public geode::Popup<> {
 protected:
     int m_value;
     bool m_enabled;
-    TextInput* m_percentageInput;
+    geode::TextInput* m_percentageInput;
     CCMenuItemSpriteExtra* m_leftButton;
     CCMenuItemSpriteExtra* m_rightButton;
     Slider* m_slider;
